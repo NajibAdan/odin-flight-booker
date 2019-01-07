@@ -1,0 +1,25 @@
+<h1>Search for a flight </h1>
+
+
+<%= form_for :search, url: flights_path ,method: :get do |f|%>
+    <%= f.label :origin, "Origin" %>
+    <%= f.select(:origin,options_for_select(Airport.ports))%>
+    <%= f.label "Destination"%>
+    <%= f.select :destination,options_for_select(Airport.ports)%>
+    <%= f.label :passengers%>
+    <%= f.number_field :passengers, value: 1%>
+    <%= f.label :date%>
+    <%= f.select :date, options_for_select(Flight.date()) %>
+    <br>
+    <%= f.submit "SEARCH!"%>
+<%end%>  
+<%if !@flights.nil?%>
+    <p> Found <%=@flights.count%> flights </p>
+    <%@flights.each do |flight|%>
+        <p>TO  : <%=flight.destination.name%> </p>
+        <p>FROM  : <%=flight.origin.name%> </p>
+        <p>Date  : <%=flight.depature_date%> </p>
+        <p>Duration  : <%=flight.duration%> hours</p>
+        <br>
+    <%end%>
+<%end%>
