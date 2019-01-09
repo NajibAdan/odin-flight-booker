@@ -1,0 +1,20 @@
+<h1> Booking details </h1>
+<%= form_for @booking do |f| %>
+    <%= f.label :details ,"#{@booking.flight.origin.name} ==> #{@booking.flight.destination.name}
+                            on #{@booking.flight.depature_date}"%>
+    <br>
+    <% @passenger_num.times do |passenger|%>
+        <p> Details for Passenger <%= passenger+1%> </p>
+        <%= f.fields_for :passengers, @booking.passenger do |passenger_details|%>
+            <%= passenger_details.label :"name#{passenger}", "Name" %>
+            <%= passenger_details.text_field :"name#{passenger}", required: true%>
+            <br>
+            <%= passenger_details.label :"email#{passenger}", "Email" %>
+            <%= passenger_details.email_field :"email#{passenger}", required: true%>
+        <%end%>
+        <br>
+    <%end%>
+    <%=f.submit "BOOK!"%>
+    <%= f.hidden_field :passenger_num, value: @passenger_num%>
+    <%= f.hidden_field :flight_id, value: @booking.flight.id%>
+<%end%>

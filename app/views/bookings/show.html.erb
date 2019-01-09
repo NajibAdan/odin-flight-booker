@@ -1,0 +1,9 @@
+<h1> Bookings </h1>
+<p>Booking Information </p>
+<p> TO : <%@booking.destination.name%> </p>
+<p> From : <%@booking.origin.name%> </p>
+<p> Date : <%@booking.depature_date%> </p>
+<%@booking.passenger.each do |passenger| %>
+    <h3>Passenger: <%=passenger.name%> </h3>
+    <h3>Email: <%=passenger.email%> </h3>
+<%end%>

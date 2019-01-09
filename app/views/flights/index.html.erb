@@ -15,11 +15,16 @@
 <%end%>  
 <%if !@flights.nil?%>
     <p> Found <%=@flights.count%> flights </p>
-    <%@flights.each do |flight|%>
-        <p>TO  : <%=flight.destination.name%> </p>
-        <p>FROM  : <%=flight.origin.name%> </p>
-        <p>Date  : <%=flight.depature_date%> </p>
-        <p>Duration  : <%=flight.duration%> hours</p>
-        <br>
+    <%= form_for :picking_flight, url:new_booking_path,method: :get do |f|%>
+        <%@flights.each do |flight|%>
+            <%= f.radio_button :flight_id,flight.id,checked: true%>
+            <p>TO  : <%=flight.destination.name%> </p>
+            <p>FROM  : <%=flight.origin.name%> </p>
+            <p>Date  : <%=flight.depature_date%> </p>
+            <p>Duration  : <%=flight.duration%> hours</p>
+            <br>
+        <%end%>
+        <%= f.hidden_field :passengers, value: @passengers%>
+        <%= f.submit "BOOK!"%>
     <%end%>
 <%end%>

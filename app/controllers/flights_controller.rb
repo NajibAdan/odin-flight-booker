@@ -4,8 +4,7 @@ class FlightsController < ApplicationController
             @flights = Flight.where(origin: airport(params[:search][:origin]),
                                    destination: airport(params[:search][:destination]),
                                    depature_date: params[:search][:date])
-        else
-            @flight = Flight.new
+            @passengers = params[:search][:passengers]
         end
        # @search_params = params[:]
     end
