@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for booking with us, <%= @passenger.name %></h1>
+    <p> Here is your ticket details </p>
+    <h3>Destination: <%=@booking.flight.destination.name%> </h3>
+    <h3>Origin: <%=@booking.flight.origin.name%> </h3>
+    <h3>Date: <%=@booking.flight.depature_date%> </h3>
+  </body>
+</html>

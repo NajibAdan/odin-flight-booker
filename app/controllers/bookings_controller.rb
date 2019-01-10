@@ -14,10 +14,12 @@ class BookingsController < ApplicationController
                     )
             if !passenger_params[:passengers][:"name#{i}"].blank? || @booking.save
                 bookings.push(@booking)
+                PassengerMailer.with(passenger: @booking).ticket.deliver_now
             else
                 render 'new'
             end
         end
+        puts bookings
         redirect_to action: "index", bookings: bookings
     end
     def index 
